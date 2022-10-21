@@ -13,11 +13,10 @@ load_dotenv()
 
 
 Bot = Client(
-    "Click Counter Bot",
+    name="Click Counter Bot",
     bot_token=os.environ.get("BOT_TOKEN"),
     api_id=int(os.environ.get("API_ID")),  # type: ignore
     api_hash=os.environ.get("API_HASH"),
-    parse_mode="html",
     sleep_threshold=3600,
 )
 
