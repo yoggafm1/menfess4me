@@ -31,7 +31,7 @@ async def start(_, update: Message):
 @Bot.on_message(filters.command(["count"]))
 async def count(_, update: Message):
     await update.reply_text(
-        text="Total 0 clicks",
+        text="Total 0 2 3 4 5 clicks",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton(text="Click Here", callback_data="count")]]
         ),
@@ -53,7 +53,7 @@ async def reset_count(_, update: Message):
 @Bot.on_callback_query(filters.regex(r"^count$"))
 async def callback(_, update: CallbackQuery):
     count = int(update.message.text.split(" ")[3]) + 1
-    text = f"Total {count} 2 3 4 5clicks"
+    text = f"Total {count} 2 3 4 5 clicks"
     await update.message.edit_text(text=text, reply_markup=update.message.reply_markup)
     await update.answer(text=f"Added your click,\n\n{text}", show_alert=True)
 
