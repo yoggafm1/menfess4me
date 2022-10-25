@@ -35,7 +35,7 @@ async def confess(client: Client, update: Message):
     nama = await client.ask(user_id, 'Ketik Nama kamu', filters=filters.text, timeout=30)
     tujuan = await client.ask(user_id, 'ketik nama crush kamu', filters=filters.text, timeout=30)
     isi = await client.ask(user_id, 'ketik apa yang ingin kamu sampaikan', filters=filters.text, timeout=30)
-    await client.send_message(user_id, f"📬 <b>Confess</b>\n\n<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
-    await client.send_message(LOG, f"📬 <b>Confess</b>\n\n<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
+    report = await client.send_message(LOG, f"📬 <b>Confess</b>\n\n<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
+    await client.send_message(user_id, f"https://t.me/dankdnkaknd/{report.message_id}")
     
 Bot.run()
