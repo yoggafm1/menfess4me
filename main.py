@@ -37,7 +37,7 @@ async def confess(client: Client, update: Message):
     isi = await client.ask(user_id, 'ketik apa yang ingin kamu sampaikan', filters=filters.text, timeout=30)
     report = await client.send_message(LOG, f"📬 <b>Confess</b>\n\n<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
     await client.send_message(user_id, f"✅ **Sudah terkirim**", 
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", callback_data="on_pmbot")]]),
+                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/dankdnkaknd/{report.id}")]]),
                               disable_web_page_preview=True,
                              )
     
