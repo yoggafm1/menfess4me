@@ -8,15 +8,16 @@ from pyrogram.types import (
 from pyrogram import Client, filters
 from pyrogram.errors import MessageNotModified
 from dotenv import load_dotenv
+from pyromod import listen 
 
 load_dotenv()
 
 
 Bot = Client(
-    name="Click Counter Bot",
-    bot_token=os.environ.get("BOT_TOKEN"),
-    api_id=int(os.environ.get("API_ID")),  # type: ignore
-    api_hash=os.environ.get("API_HASH"),
+    name="confess",
+    bot_token=os.environ.get("BOT_TOKEN", "5699253839:AAG3OLhh8YcuVskn0tkrOrYZZ-Nbon_4Faw"),
+    api_id=int(os.environ.get("API_ID", "25753386")),  # type: ignore
+    api_hash=os.environ.get("API_HASH", "a23259feb6493d32fce2ed8ec3350546"),
     sleep_threshold=3600,
 )
 
@@ -28,34 +29,12 @@ async def start(_, update: Message):
     )
 
 
-@Bot.on_message(filters.command(["count"]))
-async def count(_, update: Message):
-    await update.reply_text(
-        text="Total 0 2 3 4 5 clicks",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Click Here", callback_data="count")]]
-        ),
-    )
-
-
-@Bot.on_message(filters.command("reset"))
-async def reset_count(_, update: Message):
-    if (reply := update.reply_to_message) and (reply.reply_markup):
-        try:
-            await reply.edit(text="Total 0 clicks", reply_markup=reply.reply_markup)
-            await reply.reply_text("Counter has been reset successfully", True)
-        except MessageNotModified:
-            await reply.reply_text("Counter is already at 0", True)
-    else:
-        await update.reply_text("Please reply to an active counter message")
-
-
-@Bot.on_callback_query(filters.regex(r"^count$"))
-async def callback(_, update: CallbackQuery):
-    count = int(update.message.text.split(" ")[10000]) + 1
-    text = f"Total {count} 2 3 4 5 clicks"
-    await update.message.edit_text(text=text, reply_markup=update.message.reply_markup)
-    await update.answer(text=f"Added your click,\n\n{text}", show_alert=True)
-
+@Bot.on_message(filters.command(["confes"]))
+async def confess(_, update: Message):
+    user_id = update.chat.id
+    nama = await Bot.ask(user_id, 'Masukan Nama kamu', filters=filters.text)
+    tujuan = await Bot.ask(user_id, 'Kepada siapa yang ingin kamu confess?', filters=filters.text)
+    isi = await bot.ask(user_id, 'apa yang ingin kamu sampaikan', filters=filters.text)
+    await Bot.send_message(user_id, f"📬 <b>Confess</b>\n\nFrom : {nama}\nTo : {tujuan}\nIsi : {isi}")
 
 Bot.run()
