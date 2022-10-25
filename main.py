@@ -24,7 +24,7 @@ Bot = Client(
 @Bot.on_message(filters.command(["start"]))
 async def start(_, update: Message):
     await update.reply_text(
-        f"Hello {update.from_user.mention}, I am a telegram bot module for counting total number of clicks on a button.\n\nMade By @phobiakaliann"
+        f"Hello {update.from_user.mention}, Ini adalah bot confess milik @pintarmutualan\nJika kalian ingin confess silakan ketik /confes dan ikutin langkah-langkahnya nanti otomatis akan terkirim ke @fvconfess"
     )
     
 LOG=-1001661793479
@@ -32,9 +32,10 @@ LOG=-1001661793479
 @Bot.on_message(filters.command(["confes"]))
 async def confess(client: Client, update: Message):
     user_id = update.chat.id
-    nama = await client.ask(user_id, 'Masukan Nama kamu')
-    tujuan = await client.ask(user_id, 'Kepada siapa yang ingin kamu confess?')
-    isi = await client.ask(user_id, 'apa yang ingin kamu sampaikan')
+    nama = await client.ask(user_id, 'Ketik Nama kamu', filters=filters.text, timeout=30)
+    tujuan = await client.ask(user_id, 'ketik nama crush kamu', filters=filters.text, timeout=30)
+    isi = await client.ask(user_id, 'ketik apa yang ingin kamu sampaikan', filters=filters.text, timeout=30)
+    await client.send_message(user_id, f"📬 <b>Confess</b>\n\n<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
     await client.send_message(LOG, f"📬 <b>Confess</b>\n\n<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
     
 Bot.run()
