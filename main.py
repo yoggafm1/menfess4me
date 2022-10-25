@@ -41,4 +41,16 @@ async def confess(client: Client, update: Message):
                               disable_web_page_preview=True,
                              )
     
+KR=-1001847941518
+
+@Bot.on_message(filters.command(["kritik"]))
+async def kritik(client: Client, update: Message):
+    user_id = update.chat.id
+    tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Admin yang ingin kamu kritik</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
+    isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
+    report = await client.send_message(KR, f"🗣 Kritik nih dari {update.from_user.mention}\n\n**Kritik :** {isi.text}")
+    await client.send_message(user_id, f"✅ **Kritikan Sudah terkirim kepada {tujuan.text}**", 
+                              disable_web_page_preview=True,
+                             ) 
+    
 Bot.run()
