@@ -34,7 +34,7 @@ async def confess(_, update: Message):
     user_id = update.chat.id
     nama = await Bot.ask(user_id, 'Masukan Nama kamu', filters=filters.text)
     tujuan = await Bot.ask(user_id, 'Kepada siapa yang ingin kamu confess?', filters=filters.text)
-    isi = await bot.ask(user_id, 'apa yang ingin kamu sampaikan', filters=filters.text)
+    isi = await Bot.ask(user_id, 'apa yang ingin kamu sampaikan', filters=filters.text)
     await Bot.send_message(user_id, f"📬 <b>Confess</b>\n\nFrom : {nama}\nTo : {tujuan}\nIsi : {isi}")
 
 Bot.run()
