@@ -15,7 +15,7 @@ load_dotenv()
 
 Bot = Client(
     name="confess",
-    bot_token=os.environ.get("BOT_TOKEN", "5699253839:AAG3OLhh8YcuVskn0tkrOrYZZ-Nbon_4Faw"),
+    bot_token=os.environ.get("BOT_TOKEN", "5626754813:AAEJN4QevmwDmpkeliXjpF7GR4ABnR9rAi4"),
     api_id=int(os.environ.get("API_ID", "23693414")),  # type: ignore
     api_hash=os.environ.get("API_HASH", "7886b6a15d0a1a06c7feeaeeb6ad6210"),
 )
@@ -27,17 +27,17 @@ async def start(_, update: Message):
         f"Hello {update.from_user.mention}, Ini adalah bot confess milik @pintarmutualan\nJika kalian ingin confess silakan ketik /confes dan ikutin langkah-langkahnya nanti otomatis akan terkirim ke @fvconfess"
     )
     
-LOG=-1001661793479
+LOG=-1001593451768
 
 @Bot.on_message(filters.command(["confes"]))
 async def confess(client: Client, update: Message):
     user_id = update.chat.id
-    nama = await client.ask(user_id, 'Ketik Nama kamu', filters=filters.text, timeout=30)
-    tujuan = await client.ask(user_id, 'ketik nama crush kamu', filters=filters.text, timeout=30)
-    isi = await client.ask(user_id, 'ketik apa yang ingin kamu sampaikan', filters=filters.text, timeout=30)
-    report = await client.send_message(LOG, f"📬 <b>Confess</b>\n\n<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
+    nama = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
+    tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
+    isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
+    report = await client.send_message(LOG, f"<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
     await client.send_message(user_id, f"✅ **Sudah terkirim**", 
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/dankdnkaknd/{report.id}")]]),
+                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                               disable_web_page_preview=True,
                              )
     
