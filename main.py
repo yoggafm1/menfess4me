@@ -36,6 +36,30 @@ async def confess(client: Client, update: Message):
     tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
     isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
     if (
+        nama.text == "/confes"
+        or tujuan.text == "/confes"
+        or isi.text == "/confes"
+        or nama.text == "/start"
+        or tujuan.text == "/start"
+        or isi.text == "/start"
+        or nama.text == "/kritik"
+        or tujuan.text == "/kritik"
+        or isi.text == "/kritik"
+        or nama.text and tujuan.text == "/confes"
+        or nama.text and tujuan.text == "/start"
+        or nama.text and tujuan.text == "/kritik"
+        or nama.text and isi.text == "/confes"
+        or nama.text and isi.text == "/start"
+        or nama.text and isi.text == "/kritik"
+        or tujuan.text and isi.text == "/confes"
+        or tujuan.text and isi.text == "/start"
+        or tujuan.text and isi.text == "/kritik"
+        or nama.text and tujuan.text and isi.text == "/confes"
+        or nama.text and tujuan.text and isi.text == "/start"
+        or nama.text and tujuan.text and isi.text == "/kritik"
+    ):
+        await client.send_message(user_id, "Sepertinya ada yang salah silakan coba lagi")
+    if (
         nama.text != "/confes"
         or tujuan.text != "/confes"
         or isi.text != "/confes"
@@ -63,8 +87,6 @@ async def confess(client: Client, update: Message):
                                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                                   disable_web_page_preview=True,
                                  )
-    else:
-        await client.send_message(user_id, "Sepertinya ada yang salah silakan coba lagi")
         
     
 KR=-1001847941518
