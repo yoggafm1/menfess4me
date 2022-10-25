@@ -35,7 +35,17 @@ async def confess(client: Client, update: Message):
     nama = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
     tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
     isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
-    if nama.text and tujuan.text and isi.text != "/confes":
+    if (
+        nama.text != "/confes"
+        or tujuan.text != "/confes"
+        or isi.text != "/confes"
+        or nama.text != "/start"
+        or tujuan.text != "/start"
+        or isi.text != "/start"
+        or nama.text != "/kritik"
+        or tujuan.text != "/kritik"
+        or isi.text != "/kritik"
+    ):
         report = await client.send_message(LOG, f"<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>", disable_web_page_preview=True)
         await client.send_message(user_id, f"✅ **Sudah terkirim**", 
                                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
