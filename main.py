@@ -24,7 +24,7 @@ Bot = Client(
 @Bot.on_message(filters.command(["start"]))
 async def start(_, update: Message):
     await update.reply_text(
-        f"Hello {update.from_user.mention}, Ini adalah bot milik @pintarmutualan\n\n❓ **PERINTAH :\n/confes - untuk confess ke crush mu\n/kritik - untuk kritik kepada admin**"
+        f"**👋🏻 Hello {update.from_user.mention}!\n🗣 Ini adalah bot milik [Fantasy](https://t.me/pintarmutualan),jangan salah gunakan bot ini atau kalian akan di banned.**\n\n❓ **PERINTAH :\n/confes - untuk confess ke crush mu\n/kritik - untuk kritik kepada admin**", disable_web_page_preview=True
     )
     
 LOG=-1001593451768
@@ -35,7 +35,7 @@ async def confess(client: Client, update: Message):
     nama = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
     tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
     isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
-    report = await client.send_message(LOG, f"<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>")
+    report = await client.send_message(LOG, f"<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>", disable_web_page_preview=True)
     await client.send_message(user_id, f"✅ **Sudah terkirim**", 
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                               disable_web_page_preview=True,
@@ -48,7 +48,7 @@ async def kritik(client: Client, update: Message):
     user_id = update.chat.id
     tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Admin yang ingin kamu kritik</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
     isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
-    report = await client.send_message(KR, f"🗣 Kritik nih dari {update.from_user.mention}\n\n**Kritik :** {isi.text}")
+    report = await client.send_message(KR, f"🗣 Kritik nih dari {update.from_user.mention}\n\n**Kritik :** {isi.text}", disable_web_page_preview=True)
     await client.send_message(user_id, f"✅ **Kritikan Sudah terkirim kepada {tujuan.text}**", 
                               disable_web_page_preview=True,
                              ) 
