@@ -45,20 +45,26 @@ async def confess(client: Client, update: Message):
         or nama.text != "/kritik"
         or tujuan.text != "/kritik"
         or isi.text != "/kritik"
+        or nama.text and tujuan.text != "/confes"
+        or nama.text and tujuan.text != "/start"
+        or nama.text and tujuan.text != "/kritik"
+        or nama.text and isi.text != "/confes"
+        or nama.text and isi.text != "/start"
+        or nama.text and isi.text != "/kritik"
+        or tujuan.text and isi.text != "/confes"
+        or tujuan.text and isi.text != "/start"
+        or tujuan.text and isi.text != "/kritik"
+        or nama.text and tujuan.text and isi.text != "/confes"
+        or nama.text and tujuan.text and isi.text != "/start"
+        or nama.text and tujuan.text and isi.text != "/kritik"
     ):
         report = await client.send_message(LOG, f"<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>", disable_web_page_preview=True)
         await client.send_message(user_id, f"✅ **Sudah terkirim**", 
                                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                                   disable_web_page_preview=True,
                                  )
-    if nama.text != "/confes":
-        report = await client.send_message(LOG, f"<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>", disable_web_page_preview=True)
-        await client.send_message(user_id, f"✅ **Sudah terkirim**", 
-                                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
-                                  disable_web_page_preview=True,
-                                 )
     else:
-        await client.send_message(user_id, "tolol salah formatnya")
+        await client.send_message(user_id, "Sepertinya ada yang salah silakan coba lagi")
         
     
 KR=-1001847941518
