@@ -24,7 +24,7 @@ Bot = Client(
 @Bot.on_message(filters.command(["start"]))
 async def start(_, update: Message):
     await update.reply_text(
-        f"Hello {update.from_user.mention}, Ini adalah bot confess milik @pintarmutualan\nJika kalian ingin confess silakan ketik /confes dan ikutin langkah-langkahnya nanti otomatis akan terkirim ke @fvconfess"
+        f"Hello {update.from_user.mention}, Ini adalah bot milik @pintarmutualan\n\n❓ **PERINTAH :\n/confes - untuk confess ke crush mu\n/kritik - untuk kritik kepada admin**"
     )
     
 LOG=-1001593451768
