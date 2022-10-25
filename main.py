@@ -32,9 +32,7 @@ LOG=-1001661793479
 @Bot.on_message(filters.command(["confes"]))
 async def confess(client: Client, update: Message):
     user_id = update.chat.id
-    nama = await client.ask(user_id, 'Masukan Nama kamu')
-    tujuan = await client.ask(user_id, 'Kepada siapa yang ingin kamu confess?')
-    isi = await client.ask(user_id, 'apa yang ingin kamu sampaikan')
-    await client.send_message(LOG, f"📬 <b>Confess</b>\n\n<b>From :</b> <i>{nama}</i>\n<b>To :</b> <i>{tujuan}</i>\n<b>Isi :</b> <i>{isi}</i>")
+    confess = await client.ask(user_id, 'Masukan format\n`From: (nama kmu/anonim)\nTo : (Wajib)\nIsi: (wajib)`')
+    await client.send_message(LOG, f"📬 <b>Confess</b>\n\n{confess}")
 
 Bot.run()
