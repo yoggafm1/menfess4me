@@ -16,8 +16,8 @@ load_dotenv()
 Bot = Client(
     name="confess",
     bot_token=os.environ.get("BOT_TOKEN", "5699253839:AAG3OLhh8YcuVskn0tkrOrYZZ-Nbon_4Faw"),
-    api_id=int(os.environ.get("API_ID", "25753386")),  # type: ignore
-    api_hash=os.environ.get("API_HASH", "a23259feb6493d32fce2ed8ec3350546"),
+    api_id=int(os.environ.get("API_ID", "23693414")),  # type: ignore
+    api_hash=os.environ.get("API_HASH", "7886b6a15d0a1a06c7feeaeeb6ad6210"),
     sleep_threshold=3600,
 )
 
