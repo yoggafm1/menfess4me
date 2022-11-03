@@ -33,60 +33,34 @@ LOG=-1001593451768
 async def confess(client: Client, update: Message):
     user_id = update.chat.id
     nama = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
-    tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
-    isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
-    if (
-        nama.text == "/confes"
-        or tujuan.text == "/confes"
-        or isi.text == "/confes"
+    if (nama.text == "/confes"
         or nama.text == "/start"
-        or tujuan.text == "/start"
-        or isi.text == "/start"
         or nama.text == "/kritik"
+       ):
+        name = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
+    else:
+        name = nama       
+    tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
+    if (tujuan.text == "/confes"
+        or tujuan.text == "/start"
         or tujuan.text == "/kritik"
+       ):
+        to = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
+    else:
+        to = tujuan
+    isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
+    if (isi.text == "/confes"
+        or isi.text == "/start"
         or isi.text == "/kritik"
-        or nama.text and tujuan.text == "/confes"
-        or nama.text and tujuan.text == "/start"
-        or nama.text and tujuan.text == "/kritik"
-        or nama.text and isi.text == "/confes"
-        or nama.text and isi.text == "/start"
-        or nama.text and isi.text == "/kritik"
-        or tujuan.text and isi.text == "/confes"
-        or tujuan.text and isi.text == "/start"
-        or tujuan.text and isi.text == "/kritik"
-        or nama.text and tujuan.text and isi.text == "/confes"
-        or nama.text and tujuan.text and isi.text == "/start"
-        or nama.text and tujuan.text and isi.text == "/kritik"
-    ):
-        await client.send_message(user_id, "Sepertinya ada yang salah silakan coba lagi")
-    if (
-        nama.text != "/confes"
-        or tujuan.text != "/confes"
-        or isi.text != "/confes"
-        or nama.text != "/start"
-        or tujuan.text != "/start"
-        or isi.text != "/start"
-        or nama.text != "/kritik"
-        or tujuan.text != "/kritik"
-        or isi.text != "/kritik"
-        or nama.text and tujuan.text != "/confes"
-        or nama.text and tujuan.text != "/start"
-        or nama.text and tujuan.text != "/kritik"
-        or nama.text and isi.text != "/confes"
-        or nama.text and isi.text != "/start"
-        or nama.text and isi.text != "/kritik"
-        or tujuan.text and isi.text != "/confes"
-        or tujuan.text and isi.text != "/start"
-        or tujuan.text and isi.text != "/kritik"
-        or nama.text and tujuan.text and isi.text != "/confes"
-        or nama.text and tujuan.text and isi.text != "/start"
-        or nama.text and tujuan.text and isi.text != "/kritik"
-    ):
-        report = await client.send_message(LOG, f"<b>From :</b> <i>{nama.text}</i>\n<b>To :</b> <i>{tujuan.text}</i>\n<b>Isi :</b> <i>{isi.text}</i>", disable_web_page_preview=True)
-        await client.send_message(user_id, f"✅ **Sudah terkirim**", 
-                                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
-                                  disable_web_page_preview=True,
-                                 )
+       ):
+        confesss = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
+    else:
+        confesss = isi
+    report = await client.send_message(LOG, f"<b>From :</b> <i>{name.text}</i>\n<b>To :</b> <i>{to.text}</i>\n<b>Isi :</b> <i>{confesss.text}</i>", disable_web_page_preview=True)
+    await client.send_message(user_id, f"✅ **Sudah terkirim**", 
+                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
+                              disable_web_page_preview=True,
+                             )
         
     
 KR=-1001847941518
