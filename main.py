@@ -19,12 +19,30 @@ Bot = Client(
     api_id=int(os.environ.get("API_ID", "23693414")),  # type: ignore
     api_hash=os.environ.get("API_HASH", "7886b6a15d0a1a06c7feeaeeb6ad6210"),
 )
+KR=-1001847941518
+Start_text = """<i>Hallo! [Official Fantasy](https://t.me/officialfantasybot) akan membantumu untuk mengirimkan pesan secara anonim ke channel @fvconfess,Silakan Klik tombol <b>🔰 Menu 🔰</b> Untuk Melakunkan Menfes/Biro jodoh.
 
+Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
 
+<b>Butuh bantuan? Hubungi</b> @phobiakaliann"""
+KONTOL = "https://telegra.ph/file/1075382996efe8d8dcb15.jpg"
 @Bot.on_message(filters.command(["start"]))
 async def start(_, update: Message):
-    await update.reply_text(
-        f"**👋🏻 Hello {update.from_user.mention}!\n🗣 Ini adalah bot milik [Fantasy](https://t.me/pintarmutualan),jangan salah gunakan bot ini atau kalian akan di banned.**\n\n❓ **PERINTAH :\n/confes - untuk confess ke crush mu\n/kritik - untuk kritik kepada admin**", disable_web_page_preview=True
+    await update.reply_photo(
+        photo=KONTOL,
+        caption=Start_text,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("⛔️ Rules", callback_data="rules"),
+                    InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
+                ],
+                [
+                    InlineKeyboardButton("🔰 Menu 🔰<", callback_data="menu_home"),
+                ],
+            ]
+        ),
+        disable_web_page_preview=True
     )
     
 LOG=-1001593451768
@@ -71,14 +89,5 @@ async def confess(client: Client, update: Message):
     
 KR=-1001847941518
 
-@Bot.on_message(filters.command(["kritik"]) & filters.private)
-async def kritik(client: Client, update: Message):
-    user_id = update.chat.id
-    tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Admin yang ingin kamu kritik</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
-    isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {tujuan.text}</b>", filters=filters.text, timeout=30)
-    report = await client.send_message(KR, f"🗣 Kritik nih dari {update.from_user.mention}\n\n**Kritik :** {isi.text}", disable_web_page_preview=True)
-    await client.send_message(user_id, f"✅ **Kritikan Sudah terkirim kepada {tujuan.text}**", 
-                              disable_web_page_preview=True,
-                             ) 
     
 Bot.run()
