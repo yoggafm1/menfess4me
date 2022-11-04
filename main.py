@@ -118,7 +118,7 @@ async def cbbirooo(client, query: CallbackQuery):
     await query.message.delete()  
     user_id = query.from_user.id
     anj = await client.ask(user_id, '🗣 <b>Kirim foto kamu</b>')
-    await client.send_photo(user_id, photo.photo)
+    await client.send_photo(user_id, anj.photo)
 
     
 Bot.run()
