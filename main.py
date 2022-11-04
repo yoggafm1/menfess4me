@@ -63,7 +63,7 @@ async def home_ban(_, query: CallbackQuery):
                              InlineKeyboardButton("Confess 📪", callback_data="cbconfess"),
                            ],
                            [
-                             InlineKeyboardButton("💞 Biro Jodoh 💞", callback_data="cbstart"),
+                             InlineKeyboardButton("💞 Biro Jodoh 💞", callback_data="cbbirooo"),
                            ],
                          ]
                        ),
