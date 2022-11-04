@@ -89,8 +89,7 @@ async def cbkritik(client, query: CallbackQuery):
 async def cbconfess(client, query: CallbackQuery):
   await query.message.delete()  
   user_id = query.from_user.id
-  Tujuan = await client.ask(user_id, '🗣 <b>Silakan ketik apa yang kamu ingin sampaikan kepada admin.</b>', filters=filters.text, timeout=30)
-    nama = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
+  nama = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
     if (nama.text == "/confes"
         or nama.text == "/start"
         or nama.text == "/kritik"
