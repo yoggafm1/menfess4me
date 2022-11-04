@@ -26,6 +26,7 @@ Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
 
 <b>Butuh bantuan? Hubungi</b> @phobiakaliann"""
 KONTOL = "https://telegra.ph/file/1075382996efe8d8dcb15.jpg"
+
 @Bot.on_message(filters.command(["start"]))
 async def start(_, update: Message):
     await update.reply_photo(
@@ -38,12 +39,29 @@ async def start(_, update: Message):
                     InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
                 ],
                 [
-                    InlineKeyboardButton("🔰 Menu 🔰<", callback_data="menu_home"),
+                    InlineKeyboardButton("🔰 Menu 🔰", callback_data="home_ban"),
                 ],
             ]
         )
     )
-    
+@Bot.on_callback_query(filters.regex("home_ban"))
+async def home_ban(_, query: CallbackQuery):
+  await query.message.delete()
+  await Bot.send_photo(query.chat.id,
+                       photo=KONTOL,
+                       caption=HOME_TEXT,
+                       reply_markup=InlineKeyboardMarkup(
+                         [
+                           [
+                             InlineKeyboardButton("🗣 Kritik", callback_data="cbkritik"),
+                             InlineKeyboardButton("Confess 📪", callback_data="cbstart"),
+                           ],
+                           [
+                             InlineKeyboardButton("💞 Biro Jodoh 💞", callback_data="cbstart"),
+                           ],
+                         ]
+                       ),
+                      ) 
 LOG=-1001593451768
 
 @Bot.on_message(filters.command(["confes"]))
