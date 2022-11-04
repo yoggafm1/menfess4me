@@ -74,14 +74,14 @@ async def cbkritik(client, query: CallbackQuery):
   await query.message.delete()  
   user_id = query.from_user.id
   Tujuan = await client.ask(user_id, '🗣 <b>Silakan ketik apa yang kamu ingin sampaikan kepada admin.</b>', filters=filters.text, timeout=30)
-  if (tujuan.text == "/start"
-      or tujuan.text == "/confes"
-      or tujuan.text == "/kritik"
-      or tujuan.text == "/help"
+  if (Tujuan.text == "/start"
+      or Tujuan.text == "/confes"
+      or Tujuan.text == "/kritik"
+      or Tujuan.text == "/help"
      ):
     kri = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketikan apa yang kamu ingin katakan kepada admin__')
   else:
-    kri = tujuan
+    kri = Tujuan
   await client.send_message(PVA, f"from {query.from_user.mention}\nisi : {kri.text}")
   await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
   
