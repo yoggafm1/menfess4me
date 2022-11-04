@@ -84,7 +84,9 @@ async def cbkritik(client, query: CallbackQuery):
     kri = Tujuan
   await client.send_message(PVA, f"from {query.from_user.mention}\nisi : {kri.text}")
   await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
-  
+    
+LOG=-1001593451768
+
 @Bot.on_callback_query(filters.regex("cbconfess"))
 async def cbconfess(client, query: CallbackQuery):
     await query.message.delete()  
@@ -97,23 +99,22 @@ async def cbconfess(client, query: CallbackQuery):
     tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
     if "/" in tujuan.text:
         to = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketik nama crush kamu__', filters=filters.text, timeout=30)
+        if "/" in to.text:
+            await client.send_message(user_id, 'Sepertinya anda masih tolol silakan bertanya kepada @phobiakaliann')
+        else:
+            to = to
     else:
         to = tujuan
     isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {to.text}</b>", filters=filters.text, timeout=30)
-    if (isi.text == "/confes"
-        or isi.text == "/start"
-        or isi.text == "/kritik"
-       ):
+    if "/" in isi.text:
         confesss = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketik apa yang kamu ingin sampaikan kepada crush__', filters=filters.text, timeout=30)
     else:
         confesss = isi
-    report = await client.send_message(PVA, f"<b>From :</b> <i>{nama}</i>\n<b>To :</b> <i>{to.text}</i>\n<b>Isi :</b> <i>{confesss.text}</i>", disable_web_page_preview=True)
+    report = await client.send_message(LOG, f"<b>From :</b> <i>{nama}</i>\n<b>To :</b> <i>{to.text}</i>\n<b>Isi :</b> <i>{confesss.text}</i>", disable_web_page_preview=True)
     await client.send_message(user_id, f"✅ **Sudah terkirim**", 
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                               disable_web_page_preview=True,
                              )
-  
-LOG=-1001593451768
 
 @Bot.on_message(filters.command(["confes"]))
 async def confess(client: Client, update: Message):
