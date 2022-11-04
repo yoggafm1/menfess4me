@@ -28,7 +28,6 @@ Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
 KONTOL = "https://telegra.ph/file/1075382996efe8d8dcb15.jpg"
 HOME_TEXT = """
 <b>📪 Confess - Untuk Confess.
-💞 Biro Jodoh - untuk mengikuti biro jodoh.
 🗣 Kritik - Untuk mengkritik admin.</b>
 <i>Klik tombol dibawah sesuai yang kamu mau</i>
 """
@@ -50,6 +49,70 @@ async def start(_, update: Message):
             ]
         )
     )
+    
+RULES_TEXT = """🗣️ RULES Official Fantasy
+❌ PROMOSI TANPA IZIN
+❌ UP 18+ TANPA IZIN
+❌ JUALAN TANPA IZIN
+❌ UP LINK TANPA IZIN
+🗣️ RESIKO AUTO BAN"""
+
+@Client.on_callback_query(filters.regex("rules"))
+async def rulescb(_, query: CallbackQuery):
+  await query.message.delete()
+  await Bot.send_photo(query.message.chat.id,
+                       photo=KONTOL,
+                       caption=RULES_TEXT,
+                       reply_markup=InlineKeyboardMarkup(
+                         [
+                           [
+                             InlineKeyboardButton("🔙 Back", callback_data="cbstart"),
+                           ],
+                         ]
+                       ),
+                      )  
+PENJELASAN_TEXT = """
+<b>APA ITU MENFESS?</b>
+📝 Berdasarkan penelusuran di media sosial, istilah menfess kerap digunakan ketika seseorang ingin mengungkapkan sesuatu kepada orang lain atau semua orang secara anonim
+<b>APA ITU BIRO JODOH?</b>
+📝 Berdasarkan Kamus besar, istilah biro jodoh adalah badan usaha jasa untuk menjodohkan pria atau wanita.
+<b>APA ITU KRITIK?<b>
+📝 Kritik itu adalah kecaman atau tanggapan, kadang-kadang disertai uraian dan pertimbangan baik buruk thd suatu hasil karya, pendapat, dsb; (nomina).
+""""
+@Client.on_callback_query(filters.regex("penjelasan"))
+async def penjelasan(_, query: CallbackQuery):
+  await query.message.delete()
+  await Bot.send_photo(query.message.chat.id,
+                       photo=KONTOL,
+                       caption=PENJELASAN_TEXT,
+                       reply_markup=InlineKeyboardMarkup(
+                         [
+                           [
+                             InlineKeyboardButton("🔙 Back", callback_data="cbstart"),
+                           ],
+                         ]
+                       ),
+                      )  
+    
+@Bot.on_callback_query(filters.regex("cbstart"))
+async def cbstart(_, query: CallbackQuery):
+  await query.message.delete()
+  await Bot.send_photo(query.chat.id,
+                       photo=KONTOL,
+                       caption=Start_text,
+                       reply_markup=InlineKeyboardMarkup(
+                         [
+                           [
+                             InlineKeyboardButton("⛔️ Rules", callback_data="rules"),
+                             InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
+                           ],
+                           [
+                             InlineKeyboardButton("🔰 Menu 🔰", callback_data="menu_home"),
+                           ],
+                         ]
+                       ),
+                      )
+    
 @Bot.on_callback_query(filters.regex("home_ban"))
 async def home_ban(_, query: CallbackQuery):
   await query.message.delete()
@@ -61,10 +124,7 @@ async def home_ban(_, query: CallbackQuery):
                            [
                              InlineKeyboardButton("🗣 Kritik", callback_data="cbkritik"),
                              InlineKeyboardButton("Confess 📪", callback_data="cbconfess"),
-                           ],
-                           [
-                             InlineKeyboardButton("💞 Biro Jodoh 💞", callback_data="cbbirooo"),
-                           ],
+                           ]
                          ]
                        ),
                       ) 
@@ -111,17 +171,6 @@ async def cbconfess(client, query: CallbackQuery):
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                               disable_web_page_preview=True,
                              )
-
-
-@Bot.on_callback_query(filters.regex("cbbirooo"))
-async def cbbirooo(client, query: CallbackQuery):
-    await query.message.delete()  
-    user_id = query.from_user.id
-    anj = await client.ask(user_id, '🗣 <b>Kirim foto kamu</b>')
-    file_id = None
-    for item in anj.photo:
-        file_id = item.file_id
-    await client.send_photo(user_id, photo=file_id)
 
     
 Bot.run()
