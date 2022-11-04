@@ -74,11 +74,7 @@ async def cbkritik(client, query: CallbackQuery):
   await query.message.delete()  
   user_id = query.from_user.id
   Tujuan = await client.ask(user_id, '🗣 <b>Silakan ketik apa yang kamu ingin sampaikan kepada admin.</b>', filters=filters.text, timeout=30)
-  if (Tujuan.text == "/start"
-      or Tujuan.text == "/confes"
-      or Tujuan.text == "/kritik"
-      or Tujuan.text == "/help"
-     ):
+  if "/" in Tujuan.text:
     kri = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketikan apa yang kamu ingin katakan kepada admin__')
   else:
     kri = Tujuan
@@ -100,7 +96,7 @@ async def cbconfess(client, query: CallbackQuery):
     if "/" in tujuan.text:
         to = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketik nama crush kamu__', filters=filters.text, timeout=30)
         if "/" in to.text:
-            await client.send_message(user_id, 'Sepertinya anda masih tolol silakan bertanya kepada @phobiakaliann')
+            return await client.send_message(user_id, 'Sepertinya anda masih tolol silakan bertanya kepada @phobiakaliann')
         else:
             to = to
     else:
