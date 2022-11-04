@@ -90,19 +90,10 @@ async def cbconfess(client, query: CallbackQuery):
     await query.message.delete()  
     user_id = query.from_user.id
     nama = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
-    if (nama.text == "/confes"
-        or nama.text == "/start"
-        or nama.text == "/kritik"
-       ):
-        name = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Jika kamu ingin menyembunyikan identitas kamu silakan ketik__ /secret', filters=filters.text, timeout=30)
-        if name.text == "/secret":
-            name = "secret"
-        else:
-            name = name.text
-    if nama.text == "/secret":
-        name = "secret"
+    if "/" in nama.text:
+        nama = "secret"
     else:
-        name = nama.text       
+        nama = nama.text
     tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
     if (tujuan.text == "/confes"
         or tujuan.text == "/start"
