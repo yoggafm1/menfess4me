@@ -26,6 +26,12 @@ Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
 
 <b>Butuh bantuan? Hubungi</b> @phobiakaliann"""
 KONTOL = "https://telegra.ph/file/1075382996efe8d8dcb15.jpg"
+HOME_TEXT = """
+<b>📪 Confess - Untuk Confess.
+💞 Biro Jodoh - untuk mengikuti biro jodoh.
+🗣 Kritik - Untuk mengkritik admin.</b>
+<i>Klik tombol dibawah sesuai yang kamu mau</i>
+"""
 
 @Bot.on_message(filters.command(["start"]))
 async def start(_, update: Message):
@@ -62,6 +68,25 @@ async def home_ban(_, query: CallbackQuery):
                          ]
                        ),
                       ) 
+PVA=-1001847941518    
+@Bot.on_callback_query(filters.regex("cbkritik"))
+async def cbkritik(client, query: CallbackQuery):
+  await query.message.delete()  
+  user_id = query.from_user.id
+  Tujuan = await client.ask(user_id, '🗣 <b>Silakan ketik apa yang kamu ingin sampaikan kepada admin.</b>', filters=filters.text, timeout=30)
+  if (tujuan.text == "/start"
+      or tujuan.text == "/confes"
+      or tujuan.text == "/kritik"
+      or tujuan.text == "/help"
+     ):
+    kri = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketikan apa yang kamu ingin katakan kepada admin__')
+  else:
+    kri = tujuan
+  await client.send_message(PVA, f"from {query.from_user.mention}\nisi : {kri.text}")
+  await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
+  
+
+  
 LOG=-1001593451768
 
 @Bot.on_message(filters.command(["confes"]))
