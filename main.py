@@ -47,7 +47,7 @@ async def start(_, update: Message):
 @Bot.on_callback_query(filters.regex("home_ban"))
 async def home_ban(_, query: CallbackQuery):
   await query.message.delete()
-  await Bot.send_photo(query.chat.id,
+  await Bot.send_photo(query.message.chat.id,
                        photo=KONTOL,
                        caption=HOME_TEXT,
                        reply_markup=InlineKeyboardMarkup(
