@@ -41,8 +41,7 @@ async def start(_, update: Message):
                     InlineKeyboardButton("🔰 Menu 🔰<", callback_data="menu_home"),
                 ],
             ]
-        ),
-        disable_web_page_preview=True
+        )
     )
     
 LOG=-1001593451768
