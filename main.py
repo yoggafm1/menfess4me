@@ -98,11 +98,11 @@ async def cbconfess(client, query: CallbackQuery):
         if name.text == "/secret":
             name = "secret"
         else:
-            name = name
+            name = name.text
     if nama.text == "/secret":
         name = "secret"
     else:
-        name = nama       
+        name = nama.text       
     tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
     if (tujuan.text == "/confes"
         or tujuan.text == "/start"
@@ -119,7 +119,7 @@ async def cbconfess(client, query: CallbackQuery):
         confesss = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketik apa yang kamu ingin sampaikan kepada crush__', filters=filters.text, timeout=30)
     else:
         confesss = isi
-    report = await client.send_message(PVA, f"<b>From :</b> <i>{name.text}</i>\n<b>To :</b> <i>{to.text}</i>\n<b>Isi :</b> <i>{confesss.text}</i>", disable_web_page_preview=True)
+    report = await client.send_message(PVA, f"<b>From :</b> <i>{name}</i>\n<b>To :</b> <i>{to.text}</i>\n<b>Isi :</b> <i>{confesss.text}</i>", disable_web_page_preview=True)
     await client.send_message(user_id, f"✅ **Sudah terkirim**", 
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                               disable_web_page_preview=True,
