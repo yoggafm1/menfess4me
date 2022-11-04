@@ -51,10 +51,12 @@ async def start(_, update: Message):
     )
     
 RULES_TEXT = """🗣️ RULES Official Fantasy
+
 ❌ PROMOSI TANPA IZIN
 ❌ UP 18+ TANPA IZIN
 ❌ JUALAN TANPA IZIN
 ❌ UP LINK TANPA IZIN
+
 🗣️ RESIKO AUTO BAN"""
 
 @Bot.on_callback_query(filters.regex("rules"))
@@ -74,9 +76,11 @@ async def rulescb(_, query: CallbackQuery):
 PENJELASAN_TEXT = """
 <b>APA ITU MENFESS?</b>
 📝 Berdasarkan penelusuran di media sosial, istilah menfess kerap digunakan ketika seseorang ingin mengungkapkan sesuatu kepada orang lain atau semua orang secara anonim
+
 <b>APA ITU BIRO JODOH?</b>
 📝 Berdasarkan Kamus besar, istilah biro jodoh adalah badan usaha jasa untuk menjodohkan pria atau wanita.
-<b>APA ITU KRITIK?<b>
+
+<b>APA ITU KRITIK?</b>
 📝 Kritik itu adalah kecaman atau tanggapan, kadang-kadang disertai uraian dan pertimbangan baik buruk thd suatu hasil karya, pendapat, dsb; (nomina).
 """
 @Bot.on_callback_query(filters.regex("penjelasan"))
