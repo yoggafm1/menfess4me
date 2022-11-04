@@ -60,7 +60,7 @@ async def home_ban(_, query: CallbackQuery):
                          [
                            [
                              InlineKeyboardButton("🗣 Kritik", callback_data="cbkritik"),
-                             InlineKeyboardButton("Confess 📪", callback_data="cbstart"),
+                             InlineKeyboardButton("Confess 📪", callback_data="cbconfess"),
                            ],
                            [
                              InlineKeyboardButton("💞 Biro Jodoh 💞", callback_data="cbstart"),
@@ -85,7 +85,46 @@ async def cbkritik(client, query: CallbackQuery):
   await client.send_message(PVA, f"from {query.from_user.mention}\nisi : {kri.text}")
   await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
   
-
+@Bot.on_callback_query(filters.regex("cbconfess"))
+async def cbconfess(client, query: CallbackQuery):
+  await query.message.delete()  
+  user_id = query.from_user.id
+  Tujuan = await client.ask(user_id, '🗣 <b>Silakan ketik apa yang kamu ingin sampaikan kepada admin.</b>', filters=filters.text, timeout=30)
+    nama = await client.ask(user_id, '🗣 <b>Ketik Nama kamu</b>\n\n<b>Informasi :</b> __Pakai nama kamu,Jika ingin privasi nama silakan gunakan `Anonim` saja__', filters=filters.text, timeout=30)
+    if (nama.text == "/confes"
+        or nama.text == "/start"
+        or nama.text == "/kritik"
+       ):
+        name = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Jika kamu ingin menyembunyikan identitas kamu silakan ketik__ /secret', filters=filters.text, timeout=30)
+        if name.text == "/secret":
+            name = "secret"
+        else:
+            name = name
+    if nama.text == "/secret":
+        name = "secret"
+    else:
+        name = nama       
+    tujuan = await client.ask(user_id, '🗣 <b>Ketik Nama Crush kamu</b>\n\n<b>Informasi :</b> __Wajib pakai username/nama__', filters=filters.text, timeout=30)
+    if (tujuan.text == "/confes"
+        or tujuan.text == "/start"
+        or tujuan.text == "/kritik"
+       ):
+        to = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketik nama crush kamu__', filters=filters.text, timeout=30)
+    else:
+        to = tujuan
+    isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {to.text}</b>", filters=filters.text, timeout=30)
+    if (isi.text == "/confes"
+        or isi.text == "/start"
+        or isi.text == "/kritik"
+       ):
+        confesss = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketik apa yang kamu ingin sampaikan kepada crush__', filters=filters.text, timeout=30)
+    else:
+        confesss = isi
+    report = await client.send_message(LOG, f"<b>From :</b> <i>{name.text}</i>\n<b>To :</b> <i>{to.text}</i>\n<b>Isi :</b> <i>{confesss.text}</i>", disable_web_page_preview=True)
+    await client.send_message(user_id, f"✅ **Sudah terkirim**", 
+                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
+                              disable_web_page_preview=True,
+                             )
   
 LOG=-1001593451768
 
