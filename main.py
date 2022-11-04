@@ -121,7 +121,7 @@ async def cbbirooo(client, query: CallbackQuery):
     file_id = None
     for item in anj.photo:
         file_id = item.file_id
-    await client.send_photo(user_id, file_id)
+    await client.send_photo(user_id, photo=file_id)
 
     
 Bot.run()
