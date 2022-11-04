@@ -57,7 +57,7 @@ RULES_TEXT = """🗣️ RULES Official Fantasy
 ❌ UP LINK TANPA IZIN
 🗣️ RESIKO AUTO BAN"""
 
-@Client.on_callback_query(filters.regex("rules"))
+@Bot.on_callback_query(filters.regex("rules"))
 async def rulescb(_, query: CallbackQuery):
   await query.message.delete()
   await Bot.send_photo(query.message.chat.id,
@@ -97,7 +97,7 @@ async def penjelasan(_, query: CallbackQuery):
 @Bot.on_callback_query(filters.regex("cbstart"))
 async def cbstart(_, query: CallbackQuery):
   await query.message.delete()
-  await Bot.send_photo(query.chat.id,
+  await Bot.send_photo(query.message.chat.id,
                        photo=KONTOL,
                        caption=Start_text,
                        reply_markup=InlineKeyboardMarkup(
@@ -107,7 +107,7 @@ async def cbstart(_, query: CallbackQuery):
                              InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
                            ],
                            [
-                             InlineKeyboardButton("🔰 Menu 🔰", callback_data="menu_home"),
+                             InlineKeyboardButton("🔰 Menu 🔰", callback_data="home_ban"),
                            ],
                          ]
                        ),
