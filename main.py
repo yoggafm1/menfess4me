@@ -99,7 +99,7 @@ async def cbconfess(client, query: CallbackQuery):
             name = "secret"
         else:
             name = name
-  if nama.text == "/secret" or name.text == "/secret":
+  if nama.text == "/secret":
     name = "secret"
   else:
     name = nama   
