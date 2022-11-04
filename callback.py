@@ -78,7 +78,7 @@ HOME_TEXT = """
 
 <i>Klik tombol dibawah sesuai yang kamu mau</i>
 """
-@Client.on_callback_query(filters.regex("menu_home"))
+@Bot.on_callback_query(filters.regex("menu_home"))
 async def menu_home(_, query: CallbackQuery):
   await query.message.delete()
   await Bot.send_photo(query.chat.id,
@@ -97,7 +97,7 @@ async def menu_home(_, query: CallbackQuery):
                        ),
                       )     
   
-@Client.on_callback_query(filters.regex("cbkritik"))
+@Bot.on_callback_query(filters.regex("cbkritik"))
 async def cbkritik(client, query: CallbackQuery):
   await query.message.delete()  
   user_id = query.from_user.id
