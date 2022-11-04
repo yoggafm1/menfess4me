@@ -78,8 +78,8 @@ PENJELASAN_TEXT = """
 📝 Berdasarkan Kamus besar, istilah biro jodoh adalah badan usaha jasa untuk menjodohkan pria atau wanita.
 <b>APA ITU KRITIK?<b>
 📝 Kritik itu adalah kecaman atau tanggapan, kadang-kadang disertai uraian dan pertimbangan baik buruk thd suatu hasil karya, pendapat, dsb; (nomina).
-""""
-@Client.on_callback_query(filters.regex("penjelasan"))
+"""
+@Bot.on_callback_query(filters.regex("penjelasan"))
 async def penjelasan(_, query: CallbackQuery):
   await query.message.delete()
   await Bot.send_photo(query.message.chat.id,
