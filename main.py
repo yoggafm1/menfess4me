@@ -44,7 +44,7 @@ async def start(_, update: Message):
                     InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
                 ],
                 [
-                    InlineKeyboardButton("🔰 Menu 🔰", callback_data="home_ban"),
+                    InlineKeyboardButton("🔰 Menu 🔰", callback_data="cbkritik"),
                 ],
             ]
         )
@@ -111,7 +111,7 @@ async def cbstart(_, query: CallbackQuery):
                              InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
                            ],
                            [
-                             InlineKeyboardButton("🔰 Menu 🔰", callback_data="home_ban"),
+                             InlineKeyboardButton("🔰 Menu 🔰", callback_data="cbkritik"),
                            ],
                          ]
                        ),
