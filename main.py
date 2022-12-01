@@ -20,9 +20,13 @@ Bot = Client(
     api_hash=os.environ.get("API_HASH", "b726ce690552a5707dd80294907f39e1"),
 )
 KR=-1001839097484
-Start_text = """<i>Hallo! [Menfess 4Me](https://t.me/Menfess4Me_bot) akan membantumu untuk mengirimkan pesan secara anonim ke Grup,Silakan Klik tombol <b>🔰 Menu 🔰</b> Untuk Melakunkan Menfes.
+Start_text = """<i>Hallo! [Anonim 4Me](https://t.me/Anonim4Mebot) akan membantumu untuk mengirimkan pesan secara anonim ke Grup,Silakan Klik tombol <b>🔰 Menu 🔰</b> Untuk Melakunkan Menfes.
 
 Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
+
+<b>👤 Anon Grup </b>- Untuk Pesan Anon Grup
+<b>🎮 Arena 4Me </b>- Untuk Pesan Arena 4Me
+<i>Klik tombol dibawah sesuai yang kamu mau</i>
 
 <b>Butuh bantuan? Hubungi</b> @Chat4Robot"""
 KONTOL = "https://telegra.ph/file/abeae27723ac7d7be7807.jpg"
