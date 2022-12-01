@@ -15,12 +15,12 @@ load_dotenv()
 
 Bot = Client(
     name="confess",
-    bot_token=os.environ.get("BOT_TOKEN", "5651030839:AAGc6KBnzYuObHsmbFPUgxFB88G7h1YndAk"),
-    api_id=int(os.environ.get("API_ID", "14962060")),  # type: ignore
-    api_hash=os.environ.get("API_HASH", "b726ce690552a5707dd80294907f39e1"),
+    bot_token=os.environ.get("BOT_TOKEN", "5668943967:AAEBcDSG-Lz9PluRF_-lMSfbYlAJ2qRCPUg"),
+    api_id=int(os.environ.get("API_ID", "14672956")),  # type: ignore
+    api_hash=os.environ.get("API_HASH", "115e8242ea0423893160bb61a9e05eab"),
 )
 KR=-1001839097484
-Start_text = """<i>Hallo! [Anonim 4Me](https://t.me/Anonim4Mebot) akan membantumu untuk mengirimkan pesan secara anonim ke Grup,Silakan Klik tombol <b>🔰 Menu 🔰</b> Untuk Melakunkan Menfes.
+Start_text = """<i>Hallo! [Anonim 4Me](https://t.me/Anonim4Mebot) akan membantumu untuk mengirimkan pesan secara anonim ke Grup & Channel.
 
 Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
 
@@ -29,7 +29,7 @@ Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
 <i>Klik tombol dibawah sesuai yang kamu mau</i>
 
 <b>Butuh bantuan? Hubungi</b> @Chat4Robot"""
-KONTOL = "https://telegra.ph/file/abeae27723ac7d7be7807.jpg"
+KONTOL = "https://telegra.ph/file/3d0fa0a56b2e91d1b06d9.jpg"
 HOME_TEXT = """
 <b>📪 Confess - Untuk Confess.
 🗣 Kritik - Untuk mengkritik admin.</b>
@@ -57,7 +57,7 @@ async def start(_, update: Message):
         )
     )
     
-RULES_TEXT = """📢 Peraturan Menfess 4Me
+RULES_TEXT = """📢 Peraturan Anonim 4Me
 
 1. dilarang dm berisikan hal yg mengundang war (bersifat menjatuhkan suatu fandom, grup, agama, suku maupun ras)
 2. dilarang mengirim menfess yang memuat data pribadi secara terang-terangan sekalipun data pribadi sendiri seperti nomor hp
@@ -86,8 +86,8 @@ PENJELASAN_TEXT = """
 <b>Apa Itu Menfess ?</b>
 <b>•</b> Menfess adalah singkatan dalam bahasa Inggris dari "mention confess" yang memiliki makna kurang lebih "surat kaleng" atau "pesan anonim".
 
-<b>Apa Itu Kritik ?</b>
-<b>•</b> Kritik itu adalah kecaman atau tanggapan, kadang-kadang disertai uraian dan pertimbangan baik buruk terhadap suatu hasil karya, pendapat, dan sebagainya.
+<b>Apa Itu Anonim ?</b>
+<b>•</b> Arti anonim adalah tanpa nama atau identitas atau tidak dikenali.
 """
 @Bot.on_callback_query(filters.regex("penjelasan"))
 async def penjelasan(_, query: CallbackQuery):
@@ -141,23 +141,23 @@ async def home_ban(_, query: CallbackQuery):
                          ]
                        ),
                       ) 
-PVA=-1001839097484
-ADI=-1001622611890    
+PVA=-1001854811904
+ADI=-1001792566616    
 @Bot.on_callback_query(filters.regex("cbkritik"))
 async def cbkritik(client, query: CallbackQuery):
   await query.message.delete()  
   user_id = query.from_user.id
-  Tujuan = await client.ask(user_id, '🗣 <b>Silakan ketik apa yang kamu ingin sampaikan kepada admin.</b>', filters=filters.text, timeout=30)
+  Tujuan = await client.ask(user_id, '🗣 <b>Silakan ketik apa yang kamu ingin sampaikan di Anon Grup</b>', filters=filters.text, timeout=30)
   if "/" in Tujuan.text:
-    kri = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketikan apa yang kamu ingin katakan kepada admin__')
+    kri = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketikan apa yang kamu ingin katakan  di Anon Grup__')
   else:
     kri = Tujuan
   await client.send_message(PVA, f" {kri.text}")
   await client.send_message(ADI, f"<b>•Dari: </b> {query.from_user.first_name} [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{kri.text}</i>")
-  await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
+  await client.send_message(query.from_user.id, "Pesan kamu telah terkirim")
     
-LOG=-1001839097484
-ADM=-1001622611890
+LOG=-1001502192084
+ADM=-1001792566616
 
 @Bot.on_callback_query(filters.regex("cbconfess"))
 async def cbconfess(client, query: CallbackQuery):
