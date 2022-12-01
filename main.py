@@ -149,7 +149,8 @@ async def cbkritik(client, query: CallbackQuery):
     kri = Tujuan
   await client.send_message(PVA, f" {kri.text}")
   await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
-    
+    await client.send_message(ADM, f"<b>•Dari: </b> {query.from_user.first_name} [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{kri.text}</i>\n  <a href='https://t.me/c/1874589177/{report.id}'>Lihat Pesan</a>")
+
 LOG=-1001839097484
 ADM=-1001622611890
 
