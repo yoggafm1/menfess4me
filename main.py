@@ -135,7 +135,7 @@ async def home_ban(_, query: CallbackQuery):
                        ),
                       ) 
 PVA=-1001839097484
-ADM=-1001622611890
+
     
 @Bot.on_callback_query(filters.regex("cbkritik"))
 async def cbkritik(client, query: CallbackQuery):
@@ -148,10 +148,9 @@ async def cbkritik(client, query: CallbackQuery):
     kri = Tujuan
   await client.send_message(PVA, f"{kri.text}")
   await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
-await client.send_message(ADM, f"<b>•Dari: </b> <a href='https://t.me/c/1874589177/{report.id}'>{query.from_user.first_name}</a> [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{kri.text}</i>")
-    
-LOG=-1001839097484
 
+LOG=-1001839097484
+ADM=-1001622611890
 @Bot.on_callback_query(filters.regex("cbconfess"))
 async def cbconfess(client, query: CallbackQuery):
     await query.message.delete()  
@@ -180,7 +179,7 @@ async def cbconfess(client, query: CallbackQuery):
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                               disable_web_page_preview=True,
                              )
-await client.send_message(ADM, f"<b>•Dari: </b> <a href='https://t.me/c/1874589177/{report.id}'>{query.from_user.first_name}</a> [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{confesss.text}</i>")
+	await client.send_message(ADM, f"<b>•Dari: </b> <a href='https://t.me/c/1874589177/{report.id}'>{query.from_user.first_name}</a> [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{confesss.text}</i>")
 
     
 Bot.run()
