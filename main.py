@@ -44,7 +44,10 @@ async def start(_, update: Message):
                     InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
                 ],
                 [
-                    InlineKeyboardButton("🔰 Menu 🔰", callback_data="cbkritik"),
+                    InlineKeyboardButton("👤 Anonim Grup", callback_data="cbkritik"),
+                ],
+                [
+                    InlineKeyboardButton("🎮 Arena 4Me", callback_data="cbconfess"),
                 ],
             ]
         )
@@ -111,8 +114,11 @@ async def cbstart(_, query: CallbackQuery):
                              InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
                            ],
                            [
-                             InlineKeyboardButton("🔰 Menu 🔰", callback_data="cbkritik"),
+                             InlineKeyboardButton("👤 Anonim Grup", callback_data="cbkritik"),
                            ],
+	                  [
+                             InlineKeyboardButton("🎮 Arena 4Me", callback_data="cbconfess"),
+                            ],
                          ]
                        ),
                       )
@@ -142,7 +148,7 @@ async def cbkritik(client, query: CallbackQuery):
     kri = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketikan apa yang kamu ingin katakan kepada admin__')
   else:
     kri = Tujuan
-  await client.send_message(PVA, f"from {query.from_user.mention}\nisi : {kri.text}")
+  await client.send_message(PVA, f"{kri.text}")
   await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
     
 LOG=-1001839097484
