@@ -20,12 +20,12 @@ Bot = Client(
     api_hash=os.environ.get("API_HASH", "b726ce690552a5707dd80294907f39e1"),
 )
 KR=-1001839097484
-Start_text = """<i>Hallo! [Official Fantasy](https://t.me/officialfantasybot) akan membantumu untuk mengirimkan pesan secara anonim ke channel @fvconfess,Silakan Klik tombol <b>🔰 Menu 🔰</b> Untuk Melakunkan Menfes/Biro jodoh.
+Start_text = """<i>Hallo! [Menfess 4Me](https://t.me/Menfess4Me_bot) akan membantumu untuk mengirimkan pesan secara anonim ke Grup,Silakan Klik tombol <b>🔰 Menu 🔰</b> Untuk Melakunkan Menfes.
 
 Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
 
-<b>Butuh bantuan? Hubungi</b> @phobiakaliann"""
-KONTOL = "https://telegra.ph/file/1075382996efe8d8dcb15.jpg"
+<b>Butuh bantuan? Hubungi</b> @Chat4Robot"""
+KONTOL = "https://telegra.ph/file/abeae27723ac7d7be7807.jpg"
 HOME_TEXT = """
 <b>📪 Confess - Untuk Confess.
 🗣 Kritik - Untuk mengkritik admin.</b>
@@ -43,23 +43,24 @@ async def start(_, update: Message):
                     InlineKeyboardButton("⛔️ Rules", callback_data="rules"),
                     InlineKeyboardButton("Penjelasan 📝", callback_data="penjelasan"),
                 ],
-                [
-                    InlineKeyboardButton("👤 Anonim Grup", callback_data="cbkritik"),
-                ],
-                [
-                    InlineKeyboardButton("🎮 Arena 4Me", callback_data="cbconfess"),
+                 [
+                             InlineKeyboardButton("👤 Anonim Grup", callback_data="cbkritik"),
+                     ],
+	               [
+                             InlineKeyboardButton("🎮 Arena 4Me", callback_data="cbconfess"),
                 ],
             ]
         )
     )
     
-RULES_TEXT = """📢 Peraturan Anonim4Me
+RULES_TEXT = """📢 Peraturan Menfess 4Me
 
 1. dilarang dm berisikan hal yg mengundang war (bersifat menjatuhkan suatu fandom, grup, agama, suku maupun ras)
 2. dilarang mengirim menfess yang memuat data pribadi secara terang-terangan sekalipun data pribadi sendiri seperti nomor hp
 3. dilarang berjualan barang apapun
 
 📢 Owner/Admin tidak akan ikut campur dan tau menau tentang menfess yang masuk serta tidak akan membeberkan siapa si pengirim menfess terkecuali kalau pengirim melanggar RULES yang sudah dibuat diatas dan akan mendapatkan kosekuensinya
+
 •PELANGGARAN RINGAN AKAN DITEGUR
 •PELANGGARAN BERAT AKAN DI POST DAN DI BLOK PERMANEN"""
 
@@ -78,9 +79,11 @@ async def rulescb(_, query: CallbackQuery):
                        ),
                       )  
 PENJELASAN_TEXT = """
-<<b>Apa Itu Menfess ?</b>
+<b>Apa Itu Menfess ?</b>
 <b>•</b> Menfess adalah singkatan dalam bahasa Inggris dari "mention confess" yang memiliki makna kurang lebih "surat kaleng" atau "pesan anonim".
 
+<b>Apa Itu Kritik ?</b>
+<b>•</b> Kritik itu adalah kecaman atau tanggapan, kadang-kadang disertai uraian dan pertimbangan baik buruk terhadap suatu hasil karya, pendapat, dan sebagainya.
 """
 @Bot.on_callback_query(filters.regex("penjelasan"))
 async def penjelasan(_, query: CallbackQuery):
@@ -112,7 +115,7 @@ async def cbstart(_, query: CallbackQuery):
                            [
                              InlineKeyboardButton("👤 Anonim Grup", callback_data="cbkritik"),
                            ],
-	                  [
+	                       [
                              InlineKeyboardButton("🎮 Arena 4Me", callback_data="cbconfess"),
                             ],
                          ]
@@ -134,9 +137,7 @@ async def home_ban(_, query: CallbackQuery):
                          ]
                        ),
                       ) 
-PVA=-1001839097484
-
-    
+PVA=-1001839097484    
 @Bot.on_callback_query(filters.regex("cbkritik"))
 async def cbkritik(client, query: CallbackQuery):
   await query.message.delete()  
@@ -146,11 +147,12 @@ async def cbkritik(client, query: CallbackQuery):
     kri = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketikan apa yang kamu ingin katakan kepada admin__')
   else:
     kri = Tujuan
-  await client.send_message(PVA, f"{kri.text}")
+  await client.send_message(PVA, f" {kri.text}")
   await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
-
+    
 LOG=-1001839097484
 ADM=-1001622611890
+
 @Bot.on_callback_query(filters.regex("cbconfess"))
 async def cbconfess(client, query: CallbackQuery):
     await query.message.delete()  
@@ -164,7 +166,7 @@ async def cbconfess(client, query: CallbackQuery):
     if "/" in tujuan.text:
         to = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketik nama crush kamu__', filters=filters.text, timeout=30)
         if "/" in to.text:
-            return await client.send_message(user_id, 'Sepertinya anda masih tolol silakan bertanya kepada @phobiakaliann')
+            return await client.send_message(user_id, 'Sepertinya anda masih bodoh, silakan bertanya kepada @Chat4Robot')
         else:
             to = to
     else:
@@ -172,14 +174,18 @@ async def cbconfess(client, query: CallbackQuery):
     isi = await client.ask(user_id, f"🗣 <b>Ketik apa yang ingin kamu sampaikan kepada {to.text}</b>", filters=filters.text, timeout=30)
     if "/" in isi.text:
         confesss = await client.ask(user_id, '<b>⚠️ Terjadi kesalahan.</b>\n__Ketik apa yang kamu ingin sampaikan kepada crush__', filters=filters.text, timeout=30)
+
     else:
+        
         confesss = isi
     report = await client.send_message(LOG, f"<b>From :</b> <i>{nama}</i>\n<b>To :</b> <i>{to.text}</i>\n<b>Isi :</b> <i>{confesss.text}</i>", disable_web_page_preview=True)
-    await client.send_message(user_id, f"✅ **Sudah terkirim**", 
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
+    await client.send_message(user_id, f"Terima kasih telah menggunakan bot ini, pesan Anda akan segera dikirim.", 
+                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ Lihat Pesan", url=f"https://t.me/c/1874589177/{report.id}")]]),
                               disable_web_page_preview=True,
                              )
-	await client.send_message(ADM, f"<b>•Dari: </b> <a href='https://t.me/c/1874589177/{report.id}'>{query.from_user.first_name}</a> [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{confesss.text}</i>")
+    await client.send_message(ADM, f"<b>•Dari: </b> {query.from_user.first_name} [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{confesss.text}</i>\n  <a href='https://t.me/c/1874589177/{report.id}'>Lihat Pesan</a>")
 
     
+    
 Bot.run()
+
