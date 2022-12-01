@@ -24,8 +24,8 @@ Start_text = """<i>Hallo! [Anonim 4Me](https://t.me/Anonim4Mebot) akan membantum
 
 Sebelum menggunakan silakan baca rules terlebih dahulu ya🥰</i>
 
-<b>👤 Anon Grup </b>- Untuk Pesan Anon Grup
-<b>🎮 Arena 4Me </b>- Untuk Pesan Arena 4Me
+<b>👤 Anon Grup </b>- <i>Untuk Pesan Anon Grup</i>
+<b>🎮 Arena 4Me </b>- <i>Untuk Pesan Arena 4Me</i>
 <i>Klik tombol dibawah sesuai yang kamu mau</i>
 
 <b>Butuh bantuan? Hubungi</b> @Chat4Robot"""
@@ -186,7 +186,7 @@ async def cbconfess(client, query: CallbackQuery):
         confesss = isi
     report = await client.send_message(LOG, f"<b>From :</b> <i>{nama}</i>\n<b>To :</b> <i>{to.text}</i>\n<b>Isi :</b> <i>{confesss.text}</i>", disable_web_page_preview=True)
     await client.send_message(user_id, f"Terima kasih telah menggunakan bot ini, pesan Anda akan segera dikirim.", 
-                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ Lihat Pesan", url=f"https://t.me/c/1874589177/{report.id}")]]),
+                              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ Lihat Pesan", url=f"https://t.me/arena4me/{report.id}")]]),
                               disable_web_page_preview=True,
                              )
     await client.send_message(ADM, f"<b>•Dari: </b> {query.from_user.first_name} [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{confesss.text}</i>\n  <a href='https://t.me/c/1874589177/{report.id}'>Lihat Pesan</a>")
