@@ -53,14 +53,15 @@ async def start(_, update: Message):
         )
     )
     
-RULES_TEXT = """🗣️ RULES Official Fantasy
+RULES_TEXT = """📢 Peraturan Anonim4Me
 
-❌ PROMOSI TANPA IZIN
-❌ UP 18+ TANPA IZIN
-❌ JUALAN TANPA IZIN
-❌ UP LINK TANPA IZIN
+1. dilarang dm berisikan hal yg mengundang war (bersifat menjatuhkan suatu fandom, grup, agama, suku maupun ras)
+2. dilarang mengirim menfess yang memuat data pribadi secara terang-terangan sekalipun data pribadi sendiri seperti nomor hp
+3. dilarang berjualan barang apapun
 
-🗣️ RESIKO AUTO BAN"""
+📢 Owner/Admin tidak akan ikut campur dan tau menau tentang menfess yang masuk serta tidak akan membeberkan siapa si pengirim menfess terkecuali kalau pengirim melanggar RULES yang sudah dibuat diatas dan akan mendapatkan kosekuensinya
+•PELANGGARAN RINGAN AKAN DITEGUR
+•PELANGGARAN BERAT AKAN DI POST DAN DI BLOK PERMANEN"""
 
 @Bot.on_callback_query(filters.regex("rules"))
 async def rulescb(_, query: CallbackQuery):
@@ -77,14 +78,9 @@ async def rulescb(_, query: CallbackQuery):
                        ),
                       )  
 PENJELASAN_TEXT = """
-<b>APA ITU MENFESS?</b>
-📝 Berdasarkan penelusuran di media sosial, istilah menfess kerap digunakan ketika seseorang ingin mengungkapkan sesuatu kepada orang lain atau semua orang secara anonim
+<<b>Apa Itu Menfess ?</b>
+<b>•</b> Menfess adalah singkatan dalam bahasa Inggris dari "mention confess" yang memiliki makna kurang lebih "surat kaleng" atau "pesan anonim".
 
-<b>APA ITU BIRO JODOH?</b>
-📝 Berdasarkan Kamus besar, istilah biro jodoh adalah badan usaha jasa untuk menjodohkan pria atau wanita.
-
-<b>APA ITU KRITIK?</b>
-📝 Kritik itu adalah kecaman atau tanggapan, kadang-kadang disertai uraian dan pertimbangan baik buruk thd suatu hasil karya, pendapat, dsb; (nomina).
 """
 @Bot.on_callback_query(filters.regex("penjelasan"))
 async def penjelasan(_, query: CallbackQuery):
@@ -138,7 +134,9 @@ async def home_ban(_, query: CallbackQuery):
                          ]
                        ),
                       ) 
-PVA=-1001839097484    
+PVA=-1001839097484
+ADM=-1001622611890
+    
 @Bot.on_callback_query(filters.regex("cbkritik"))
 async def cbkritik(client, query: CallbackQuery):
   await query.message.delete()  
@@ -150,6 +148,7 @@ async def cbkritik(client, query: CallbackQuery):
     kri = Tujuan
   await client.send_message(PVA, f"{kri.text}")
   await client.send_message(query.from_user.id, "Kritik kamu telah terkirim")
+await client.send_message(ADM, f"<b>•Dari: </b> <a href='https://t.me/c/1874589177/{report.id}'>{query.from_user.first_name}</a> [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{kri.text}</i>")
     
 LOG=-1001839097484
 
@@ -181,6 +180,7 @@ async def cbconfess(client, query: CallbackQuery):
                               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("➡ View", url=f"https://t.me/fvconfess/{report.id}")]]),
                               disable_web_page_preview=True,
                              )
+await client.send_message(ADM, f"<b>•Dari: </b> <a href='https://t.me/c/1874589177/{report.id}'>{query.from_user.first_name}</a> [<pre>{query.from_user.id}</pre>]\n<b>•Pesan: </b> <i>{confesss.text}</i>")
 
     
 Bot.run()
