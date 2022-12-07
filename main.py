@@ -15,9 +15,9 @@ load_dotenv()
 
 Bot = Client(
     name="confess",
-    bot_token=os.environ.get("BOT_TOKEN", "5668943967:AAEBcDSG-Lz9PluRF_-lMSfbYlAJ2qRCPUg"),
-    api_id=int(os.environ.get("API_ID", "14672956")),  # type: ignore
-    api_hash=os.environ.get("API_HASH", "115e8242ea0423893160bb61a9e05eab"),
+    bot_token=os.environ.get("BOT_TOKEN", "5609275386:AAEZyazPN9u8ai9G5Kg4xuUvR9UTgfY0y3k"),
+    api_id=int(os.environ.get("API_ID", "26560795")),  # type: ignore
+    api_hash=os.environ.get("API_HASH", "9149c43550bd4c5dbeda468900c93901"),
 )
 KR=-1001839097484
 Start_text = """<i>Hallo! [Anonim 4Me](https://t.me/Anonim4Mebot) akan membantumu untuk mengirimkan pesan secara anonim ke Grup & Channel.
